@@ -30,8 +30,8 @@ impl Printer {
             {
                 trim_trailing_spaces(&mut doc);
                 self.word(match attr.style {
-                    AttrStyle::Outer => "///",
-                    AttrStyle::Inner(_) => "//!",
+                    AttrStyle::Outer => "/// ",
+                    AttrStyle::Inner(_) => "//! ",
                 });
                 self.word(doc);
                 self.hardbreak();
@@ -55,7 +55,7 @@ impl Printer {
         } else if let Some(mut comment) = value_of_attribute("comment", attr) {
             if !comment.contains('\n') {
                 trim_trailing_spaces(&mut comment);
-                self.word("//");
+                self.word("// ");
                 self.word(comment);
                 self.hardbreak();
                 return;
